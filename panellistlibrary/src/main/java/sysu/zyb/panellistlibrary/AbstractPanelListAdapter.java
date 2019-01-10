@@ -68,7 +68,7 @@ public abstract class AbstractPanelListAdapter {
      * 标题的宽和高,同时也是列表头的宽和列表头的高
      */
     private int titleWidth = 150;
-    private int titleHeight = 100;
+    private int titleHeight = 40;
     private int columnItemHeight = 100;
 
     private String title = "";
@@ -78,7 +78,7 @@ public abstract class AbstractPanelListAdapter {
 
     private String columnColor = "#607D8B";//default color of column
     private String titleColor = "#CFD8DC";//default color of title
-    private String rowColor = "#CDDC39";//default color of title
+    private String rowColor = "#A3A3A3";//default color of title
 
     private Drawable rowDivider;
     private Drawable columnDivider;
@@ -110,7 +110,7 @@ public abstract class AbstractPanelListAdapter {
      */
     private List<List<String>> contentDataList;
     private List<Integer> itemWidthList;
-    private int itemHeight = 150;// 默认150px 的高度
+    private int itemHeight = 30;// 默认30px 的高度
 
     /**
      * constructor
@@ -403,7 +403,7 @@ public abstract class AbstractPanelListAdapter {
             tv_title.setBackgroundResource(titleBackgroundResource);
         }
         tv_title.getPaint().setFakeBoldText(true);
-        tv_title.setGravity(Gravity.CENTER);
+        tv_title.setGravity(Gravity.CENTER_VERTICAL);
         tv_title.setBackgroundColor(Color.parseColor(titleColor));
         tv_title.setId(View.generateViewId());//设置一个随机id，这样可以保证不冲突
         RelativeLayout.LayoutParams lp_tv_title = new RelativeLayout.LayoutParams(titleWidth, titleHeight);
@@ -425,6 +425,7 @@ public abstract class AbstractPanelListAdapter {
 
         // 3. column （ListView --> PanelListLayout）
         lv_column = new ListView(context);
+        lv_column.setFocusable(false);
 //        lv_column.setFastScrollEnabled(false);
         lv_column.setBackgroundColor(Color.parseColor(columnColor));
         lv_column.setId(View.generateViewId());
@@ -525,10 +526,12 @@ public abstract class AbstractPanelListAdapter {
         for (int i = 0; i < rowCount; i++) {
             TextView rowItem = new TextView(context);
             rowItem.setText(rowDataList1.get(i));//设置文字
-            rowItem.getPaint().setFakeBoldText(true);
+            //rowItem.getPaint().setFakeBoldText(true);
+            LinearLayout.LayoutParams lp_tv_title = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+            rowItem.setLayoutParams(lp_tv_title);
             rowItem.setWidth(widthArray[i]);//设置宽度
-            rowItem.setHeight(titleHeight);//设置高度
-            rowItem.setGravity(Gravity.CENTER);
+            rowItem.setHeight(30);//设置高度
+            rowItem.setGravity(Gravity.CENTER_VERTICAL);
             ll_row.addView(rowItem);
         }
     }
@@ -704,7 +707,7 @@ public abstract class AbstractPanelListAdapter {
             ((TextView) view).setText(columnDataList.get(position));
             ((TextView) view).setTextSize(15);
             view.setPadding(0, 0, 0, 0);
-            ((TextView) view).setGravity(Gravity.CENTER);
+            ((TextView) view).setGravity(Gravity.CENTER_VERTICAL);
 
             return view;
         }

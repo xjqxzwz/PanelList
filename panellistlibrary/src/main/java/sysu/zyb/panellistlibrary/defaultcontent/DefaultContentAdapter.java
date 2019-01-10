@@ -1,6 +1,8 @@
 package sysu.zyb.panellistlibrary.defaultcontent;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -75,18 +77,14 @@ public class DefaultContentAdapter extends ArrayAdapter<List<String>> {
             viewHolder.contentTextViewList.get(i).setText(itemData.get(i));
         }
 
-        if (lv_content.isItemChecked(position)){
-            view.setBackgroundColor(getContext().getResources().getColor(R.color.colorSelected));
-        } else {
-            view.setBackgroundColor(getContext().getResources().getColor(R.color.colorDeselected));
-        }
+
 
         return view;
     }
 
-    class ViewHolder {
+    public class ViewHolder {
 
-        List<TextView> contentTextViewList = new ArrayList<>(10);
+        public List<TextView> contentTextViewList = new ArrayList<>(10);
 
         ViewHolder(View view) {
             contentTextViewList.add((TextView) view.findViewById(R.id.id_tv_content1));
