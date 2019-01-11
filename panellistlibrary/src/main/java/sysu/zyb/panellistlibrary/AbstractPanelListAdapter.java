@@ -528,6 +528,7 @@ public abstract class AbstractPanelListAdapter {
             rowItem.setText(rowDataList1.get(i));//设置文字
             //rowItem.getPaint().setFakeBoldText(true);
             LinearLayout.LayoutParams lp_tv_title = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+            lp_tv_title.setMargins(4,0,0,0);
             rowItem.setLayoutParams(lp_tv_title);
             rowItem.setWidth(widthArray[i]);//设置宽度
             rowItem.setHeight(30);//设置高度
